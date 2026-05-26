@@ -5,6 +5,7 @@ import "./globals.css";
 const googleSansFlex = Google_Sans_Flex({
   variable: "--font-google-sans-flex",
   subsets: ["latin"],
+  adjustFontFallback: false,
 });
 
 const inter = Inter({
