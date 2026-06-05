@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Google_Sans_Flex, Inter } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
 
 const googleSansFlex = Google_Sans_Flex({
   variable: "--font-google-sans-flex",
@@ -14,7 +15,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Velune",
+  title: "Velune — Write Ideas That Last.",
   description: "A full-stack blog application featuring post creation, editing, deletion, and dynamic rendering — built as a demo project to explore modern web development workflows.",
 };
 
@@ -28,7 +29,10 @@ export default function RootLayout({
       lang="en"
       className={`${googleSansFlex.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
