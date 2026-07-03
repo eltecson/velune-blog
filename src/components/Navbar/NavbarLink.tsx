@@ -15,10 +15,10 @@ export default function NavbarLink({
   return (
     <Link href={href} className={`
       ${isPath ?
-        "border-b-2 border-solid border-accent text-accent" :
+        "box-border border-b-2 border-accent text-accent" :
         "text-foreground/50"
       }
-      flex items-center px-[6px] ${className}
+      flex items-center px-[4px] ${className}
     `}>
       {children}
     </Link>

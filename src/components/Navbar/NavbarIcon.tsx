@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { NavbarIconProps } from "@/types/components";
 
 export default function NavbarIcon({
@@ -6,6 +7,6 @@ export default function NavbarIcon({
   ...props
 }: NavbarIconProps) {
   return (
-    <Icon className={`w-[32px] h-[32px] ${className}`} />
+    <Icon className={cn("w-[32px] h-[32px]", className)} />
   )
 }
