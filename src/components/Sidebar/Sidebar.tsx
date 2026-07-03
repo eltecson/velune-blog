@@ -9,6 +9,7 @@ import SidebarLink from "./SidebarLink"
 import { RiMenuLine } from "@remixicon/react"
 import { ctaNavigation } from "@/constants/navigation"
 import { Button } from "@/components/ui/button"
+import { motion } from "motion/react"
 
 export default function Sidebar() {
   return (
@@ -27,19 +28,42 @@ export default function Sidebar() {
         side="top"
         className="min-w-screen min-h-screen"
       >
-        <SheetTitle className="sr-only">Mobile Sidebar</SheetTitle>
-        <SheetDescription className="sr-only">
-          Navigation links to pages: Login, Register
-        </SheetDescription>
+        <motion.nav
+          initial={{ opacity: 0, y: -32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.35,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          <SheetTitle className="sr-only">Mobile Sidebar</SheetTitle>
+          <SheetDescription className="sr-only">
+            Navigation links to pages: Login, Register
+          </SheetDescription>
 
-        {ctaNavigation.map((item) => {
-          return (
-            <ul key={item.href} className="flex flex-col items-stretch justify-center w-auto text-center min-h-full">
-              <SidebarLink href={item.href} className={item.href === "/register" ? "text-background bg-accent" : ""}>{item.title}</SidebarLink>
-            </ul>
-          )
-        })}
+          <motion.ul
+            variants={list}
+            initial="hidden"
+            animate="show"
+            className="flex flex-col justify-center min-h-full"
+          >
+            {ctaNavigation.map((link) => (
+              <SidebarLink key={link.href} href={link.href} className={link.href === "/register" ? "text-background bg-accent" : ""}>
+                {link.title}
+              </SidebarLink>
+            ))}
+          </motion.ul>
+        </motion.nav>
       </SheetContent>
     </Sheet>
   )
+}
+
+const list = {
+  show: {
+    transition: {
+      staggerChildren: 0.07,
+      delayChildren: 0.1,
+    },
+  },
 }

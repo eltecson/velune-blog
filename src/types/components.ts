@@ -18,9 +18,14 @@ interface LinkProps extends NextLinkProps {
   [key: string]: any
 }
 
+interface SidebarLinkProps extends LinkProps {
+  key: string;
+}
+
 export type {
   IconProps,
   DividerProps,
   NavbarIconProps,
   LinkProps,
+  SidebarLinkProps,
 }
