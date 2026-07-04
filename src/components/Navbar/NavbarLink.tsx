@@ -18,7 +18,7 @@ export default function NavbarLink({
     <Link href={href} className={cn(`
       ${isPath ?
         "box-border border-b-2 border-accent md:border-none text-accent" :
-        "text-foreground/50"
+        "text-foreground/50 transition-colors duration-200 hover:text-foreground/80 active:text-foreground/80"
       }
       flex flex-col items-center justify-center px-[4px] md:px-[20px]`,
       className

@@ -9,8 +9,8 @@ export default function NavbarCTAButtons() {
           key={link.href}
           href={link.href}
           className={`
-            font-display px-[16px] py-[8px]
-            ${link.href === "/register" ? "border-1 border-foreground" : ""}
+            font-display px-[16px] py-[8px] transition-colors duration-200
+            ${link.href === "/register" ? "border-1 border-foreground hover:border-accent hover:bg-accent hover:text-background" : "hover:text-foreground/80"}
           `}
         >
           <p className="text-[14px]">{link.title}</p>
