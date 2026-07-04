@@ -17,7 +17,7 @@ export default function Sidebar() {
       <SheetTrigger asChild>
         <Button
           variant="default"
-          className="flex items-center justify-center self-center cursor-pointer"
+          className="flex items-center justify-center self-center cursor-pointer md:hidden"
           size="icon-sm"
         >
           <RiMenuLine className="w-[32px] h-[32px] [&_svg]:size-8" />

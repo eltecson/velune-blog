@@ -7,6 +7,6 @@ export default function NavbarIcon({
   ...props
 }: NavbarIconProps) {
   return (
-    <Icon className={cn("w-[32px] h-[32px]", className)} />
+    <Icon className={cn("size-8 shrink-0", className)} />
   )
 }

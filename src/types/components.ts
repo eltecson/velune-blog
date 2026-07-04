@@ -19,7 +19,7 @@ interface LinkProps extends NextLinkProps {
 }
 
 interface SidebarLinkProps extends LinkProps {
-  key: string;
+  title: string;
 }
 
 export type {

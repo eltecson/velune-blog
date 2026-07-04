@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RiCloseLine, RiSearchLine } from "@remixicon/react";
 import { AnimatePresence, motion } from "motion/react";
+import NavbarCTAButtons from "./NavbarCTAButtons";
 
 export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -21,8 +22,8 @@ export default function Navbar() {
   }
   return (
     <header className="fixed top-0 left-0 w-full z-50">
-      <nav className="px-[20px] py-[8px] border-b border-solid border-foreground/50 flex justify-between items-stretch">
-        <div className="relative flex items-center gap-[8px]">
+      <nav className="px-[20px] py-[8px] border-b border-solid border-foreground/50 flex justify-between items-stretch md:gap-[40px]">
+        <div className="flex flex-1 items-center gap-[8px]">
           <VeluneLogo className="text-foreground w-[48px] h-[48px] shrink-0" />
           <AnimatePresence mode="wait" initial={false}>
             {searchOpen ? (
@@ -61,33 +62,35 @@ export default function Navbar() {
                 exit={{ opacity: 0 }}
               >
                 <Button
-                  size="icon-sm"
+                  className="h-auto w-auto p-0"
                   onClick={() => setSearchOpen(true)}
                 >
-                  <RiSearchLine className="size-8" />
+                  <div className="flex items-center justify-center md:gap-[10px] md:pl-[16px] md:pr-[128px] md:py-[8px] md:border-1 border-foreground md:rounded-full">
+                    <RiSearchLine className="size-8 md:size-4" />
+                    <p className="hidden md:block font-display normal-case font-normal text-[12px]">Search</p>
+                  </div>
                 </Button>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-        {searchOpen ? (
-            <div />
-          ) : (
-            <div className="flex gap-[8px]">
-              <div className="flex">
-                {navigation.map((item) => {
-                  return (
-                    <NavbarLink href={item.href} key={item.href}>
-                      <NavbarIcon Icon={item.icon} />
-                    </NavbarLink>
-                  )
-                })}
-              </div>
-              <Divider width={2} />
-              <Sidebar />
-            </div>
-          )
-        }
+        <div className={`
+          flex gap-[8px] md:gap-[20px]
+          ${searchOpen ? "hidden md:flex": ""}
+        `}>
+          <div className="flex">
+            {navigation.map((item) => {
+              return (
+                <NavbarLink href={item.href} title={item.title} key={item.href}>
+                  <NavbarIcon Icon={item.icon} />
+                </NavbarLink>
+              )
+            })}
+          </div>
+          <Divider width={2} />
+          <Sidebar />
+          <NavbarCTAButtons />
+        </div>
       </nav>
     </header>
   )
