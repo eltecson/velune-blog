@@ -26,7 +26,7 @@ export default function Sidebar() {
 
       <SheetContent
         side="top"
-        className="min-w-screen min-h-screen"
+        className="min-w-screen min-h-screen bg-background/50 backdrop-blur-sm"
       >
         <motion.nav
           initial={{ opacity: 0, y: -32 }}
@@ -45,10 +45,10 @@ export default function Sidebar() {
             variants={list}
             initial="hidden"
             animate="show"
-            className="flex flex-col justify-center min-h-full"
+            className="flex flex-col justify-center min-h-full px-[20px]"
           >
             {ctaNavigation.map((link) => (
-              <SidebarLink key={link.href} href={link.href} className={link.href === "/register" ? "text-background bg-accent" : ""}>
+              <SidebarLink key={link.href} href={link.href} className={link.href === "/register" ? "border-1 border-foreground active:border-accent active:bg-accent active:text-background" : "active:text-foreground/50"}>
                 {link.title}
               </SidebarLink>
             ))}
