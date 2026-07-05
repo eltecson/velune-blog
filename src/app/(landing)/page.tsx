@@ -8,18 +8,18 @@ import { useRouter } from "next/navigation";
 export default function Landing() {
   const router = useRouter();
   return (
-    <main className="flex flex-col flex-1 items-center justify-center gap-[80px] font-display">
-      <div className="flex flex-col items-center px-[20px] gap-[20px]">
-        <h1 className="text-[24px] tracking-wider text-center">
+    <main className="flex flex-col flex-1 items-center justify-center gap-[120px] font-display">
+      <div className="flex flex-col items-center px-[20px] gap-[40px]">
+        <h1 className="text-[24px] md:text-[32px] tracking-wider text-center">
           Write Ideas That Last.
         </h1>
-        <h2 className="text-base text-center leading-5">
+        <h2 className="text-base md:text-[20px] text-center leading-5">
           Velune is a modern publishing platform for creators who want clean writing, thoughtful design, and a space that feels entirely their own.
         </h2>
       </div>
       <Button
         onClick={() => router.push("/register")}
-        className="px-[24px] py-[12px] bg-secondary rounded-full font-display text-base font-normal normal-case z-2"
+        className="px-[24px] md:px-[32px] py-[12px] md:py-[16px] bg-secondary rounded-full font-display text-base md:text-[20px] font-normal normal-case z-2"
       >
         Start Writing
       </Button>
@@ -31,10 +31,10 @@ export default function Landing() {
             width={landingImgSize.mobile.width}
             height={landingImgSize.mobile.height}
             className={`
-              md:w-[${landingImgSize.desktop.width}px] h-auto rounded-[50px] fixed top-[55%] left-1/2
-              ${index === 0 ? "-translate-x-[120%] -rotate-25 translate-y-[2.5%]" : index === 1 ? "-translate-x-1/2 z-1" : "translate-x-[20%] rotate-25 translate-y-[2.5%]"}
+              md:w-[400px] h-auto rounded-[50px] md:rounded-[75px] fixed top-[55%] left-1/2
+              ${index === 0 ? "-translate-x-[120%] -rotate-25 translate-y-[2.5%] md:translate-y-[5%]" : index === 1 ? "-translate-x-1/2 z-1" : "translate-x-[20%] rotate-25 translate-y-[2.5%] md:translate-y-[5%]"}
             `}
-            sizes={`(min-width: 768px) ${landingImgSize.desktop.height}px, ${landingImgSize.desktop.width}px`}
+            sizes={`(min-width: 768px) 400px, 800px`}
           />
         ))}
       </div>
