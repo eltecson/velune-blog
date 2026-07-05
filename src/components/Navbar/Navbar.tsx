@@ -22,7 +22,7 @@ export default function Navbar() {
   }
   return (
     <header className="fixed top-0 left-0 w-full z-50">
-      <nav className="px-[20px] py-[8px] border-b border-solid border-foreground/50 flex justify-between items-stretch md:gap-[40px]">
+      <nav className="px-[20px] lg:pl-[56px] lg:pr-[80px] py-[8px] border-b border-solid border-foreground/50 flex justify-between items-stretch md:gap-[10px] lg:gap-[20px]">
         <div className="flex flex-1 items-center gap-[8px]">
           <VeluneLogo className="text-foreground w-[48px] h-[48px] shrink-0" />
           <AnimatePresence mode="wait" initial={false}>
