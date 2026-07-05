@@ -19,7 +19,7 @@ export default function Landing() {
       </div>
       <Button
         onClick={() => router.push("/register")}
-        className="px-[24px] md:px-[32px] py-[12px] md:py-[16px] bg-secondary rounded-full font-display text-base md:text-[20px] font-normal normal-case z-2"
+        className="px-[24px] md:px-[32px] py-[12px] md:py-[16px] bg-secondary rounded-full font-display text-base md:text-[20px] font-normal normal-case z-2 hover:-translate-y-1 hover:scale-110"
       >
         Start Writing
       </Button>
