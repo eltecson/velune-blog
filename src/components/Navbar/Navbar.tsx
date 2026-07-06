@@ -6,23 +6,82 @@ import NavbarLink from "./NavbarLink";
 import NavbarIcon from "./NavbarIcon";
 import Divider from "@/components/ui/divider";
 import Sidebar from "@/components/Sidebar";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { RiCloseLine, RiSearchLine } from "@remixicon/react";
 import { AnimatePresence, motion } from "motion/react";
 import NavbarCTAButtons from "./NavbarCTAButtons";
+import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [scrolled, setScrolled] = useState(false)
+  const headerRef = useRef<HTMLElement>(null)
+  const footerRef = useRef<HTMLElement | null>(null)
+
+  const [stopped, setStopped] = useState(false)
+  const [top, setTop] = useState(0)
+
+
+
   const handleSearch = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(query)
   }
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    footerRef.current = document.querySelector("footer")
+  }, [])
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (!headerRef.current || !footerRef.current) return
+
+      const headerHeight = headerRef.current.offsetHeight
+      const footerTop = footerRef.current.offsetTop
+      const scrollY = window.scrollY
+
+      const stopPoint = footerTop - headerHeight
+
+      if (scrollY >= stopPoint) {
+        setStopped(true)
+        setTop(stopPoint)
+      } else {
+        setStopped(false)
+      }
+    }
+
+    window.addEventListener("scroll", onScroll)
+    onScroll()
+
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
   return (
-    <header className="fixed top-0 left-0 w-full z-50">
-      <nav className="px-[20px] lg:pl-[56px] lg:pr-[80px] py-[8px] border-b border-solid border-foreground/50 flex justify-between items-stretch md:gap-[10px] lg:gap-[20px]">
+    <header
+      ref={headerRef}
+      className={cn(
+        "left-0 w-full z-50",
+        stopped ? "absolute" : "fixed"
+      )}
+      style={
+        stopped
+          ? { top }
+          : { top: 0 }
+      }
+    >
+      <nav className={cn(
+        "px-[20px] lg:pl-[56px] lg:pr-[80px] py-[8px] border-b border-solid border-foreground/50 flex justify-between items-stretch md:gap-[10px] lg:gap-[20px]",
+        scrolled && "bg-background/80 backdrop-blur-md"
+      )}>
         <div className="flex flex-1 items-center gap-[8px]">
           <VeluneLogo className="text-foreground w-[48px] h-[48px] shrink-0" />
           <AnimatePresence mode="wait" initial={false}>
