@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Google_Sans_Flex, Inter } from "next/font/google";
 import "@/app/globals.css";
+import Footer from "@/components/Footer";
 
 const googleSansFlex = Google_Sans_Flex({
   variable: "--font-google-sans-flex",
@@ -30,6 +31,7 @@ export default function LandingLayout({
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
         {children}
+        <Footer />
       </body>
     </html>
   );
