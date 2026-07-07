@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Topics"
+}
+
 export default function Topics() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center font-sans min-h-screen bg-background">

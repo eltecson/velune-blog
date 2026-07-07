@@ -51,6 +51,8 @@
   --color-accent: var(--accent);
   --color-complementary: var(--complementary);
   --color-dark: var(--dark);
+  --color-bad: var(--bad-clr);
+  --color-good: var(--good-clr);
   --font-sans: var(--font-inter);
   --font-display: var(--font-google-sans-flex);
   --font-heading: var(--font-sans);

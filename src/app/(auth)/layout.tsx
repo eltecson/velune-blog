@@ -15,7 +15,10 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Velune — Write Ideas That Last.",
+  title: {
+    default: "Velune — Write Ideas That Last.",
+    template: "%s | Velune",
+  },
   description: "A full-stack blog application featuring post creation, editing, deletion, and dynamic rendering — built as a demo project to explore modern web development workflows.",
 };
 
