@@ -35,6 +35,7 @@ export default function Landing() {
               ${index === 0 ? "-translate-x-[120%] -rotate-25 translate-y-[2.5%] md:translate-y-[5%]" : index === 1 ? "-translate-x-1/2 z-1" : "translate-x-[20%] rotate-25 translate-y-[2.5%] md:translate-y-[5%]"}
             `}
             sizes={`(min-width: 768px) 400px, 800px`}
+            loading="eager"
           />
         ))}
       </div>
