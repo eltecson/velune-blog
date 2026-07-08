@@ -1,4 +1,5 @@
 import { RegisterForm } from "@/components/Forms";
+import Link from "@/components/ui/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,8 +16,13 @@ export default function Register() {
             Enter your full name, email, and password to create your account.
           </h2>
         </div>
-        <div className="">
+        <div className="flex flex-col gap-[20px]">
           <RegisterForm />
+          <p className="text-base text-foreground/80 leading-tight text-center">
+            By creating an account, you agree to our <Link href="/terms" className="underline underline-offset-4 font-medium">
+            Terms & Conditions</Link> and acknowledge our <Link href="/privacy-policy" className="underline underline-offset-4 font-medium">
+            Privacy Policy</Link>.
+          </p>
         </div>
       </div>
     </main>

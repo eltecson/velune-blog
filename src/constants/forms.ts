@@ -24,3 +24,18 @@ export const registerForm = [
     label: "Confirm Password",
   },
 ]
+
+export const loginForm = [
+  {
+    id: "username-email",
+    type: "text",
+    placeholder: "Enter your username or email address",
+    label: "Username/Email",
+  },
+  {
+    id: "password",
+    type: "password",
+    placeholder: "Enter your password",
+    label: "Password",
+  },
+]
