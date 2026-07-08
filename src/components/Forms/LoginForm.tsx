@@ -47,7 +47,7 @@ export default function LoginForm() {
           </div>
         </Field>
       ))}
-      <div className="flex flex-col gap-[20px]">
+      <div className="flex flex-col gap-[20px] md:flex-row md:justify-between md:items-center">
         <Field orientation="horizontal" className="gap-2">
           <Checkbox
             id="remember-me"
@@ -62,7 +62,7 @@ export default function LoginForm() {
             Remember me for faster sign-in
           </FieldLabel>
         </Field>
-        <Link href="/forgot-password" className="text-base leading-tight font-medium font-sans active:underline underline-offset-4 text-foreground">
+        <Link href="/forgot-password" className="text-base leading-tight font-medium font-sans active:underline hover:underline underline-offset-4 text-foreground md:shrink-0 md:text-end">
           Forgot Password
         </Link>
       </div>

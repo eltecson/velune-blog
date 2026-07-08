@@ -1,4 +1,5 @@
 import { RegisterForm } from "@/components/Forms";
+import { RegisterIllustration } from "@/components/ui/icons";
 import Link from "@/components/ui/link";
 import { Metadata } from "next";
 
@@ -8,8 +9,11 @@ export const metadata: Metadata = {
 
 export default function Register() {
   return (
-    <main className="flex flex-col flex-1 items-center justify-center font-sans min-h-screen bg-background">
-      <div className="flex flex-col gap-[50px] px-[20px] py-[100px]">
+    <main className="flex items-center justify-center font-sans min-h-screen bg-background">
+      <div className="hidden lg:block flex flex-col justify-center items-center hidden lg:flex-1">
+        <RegisterIllustration className="w-full h-auto" />
+      </div>
+      <div className="flex flex-col gap-[50px] px-[20px] md:px-[80px] pt-[50px] pb-[100px] lg:flex-1">
         <div className="flex flex-col items-center gap-[10px]">
           <h1 className="font-display text-2xl font-medium text-center">Join Velune.</h1>
           <h2 className="font-sans text-base leading-tight text-center">
