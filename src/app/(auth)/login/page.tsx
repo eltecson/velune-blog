@@ -23,7 +23,7 @@ export default function Login() {
         <div className="flex flex-col gap-[20px]">
           <LoginForm />
           <p className="text-base text-foreground/80 leading-tight text-center">
-            By creating an account, you agree to our <Link href="/terms" className="underline underline-offset-4 font-medium">
+            By logging in, you agree to our <Link href="/terms" className="underline underline-offset-4 font-medium">
             Terms & Conditions</Link> and <Link href="/privacy-policy" className="underline underline-offset-4 font-medium">
             Privacy Policy</Link>.
           </p>
