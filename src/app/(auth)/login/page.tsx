@@ -13,7 +13,7 @@ export default function Login() {
       <div className="hidden lg:block flex flex-col justify-center items-center hidden lg:flex-1">
         <LoginIllustration className="w-full h-auto" />
       </div>
-      <div className="flex flex-col gap-[50px] px-[20px] md:px-[80px] pt-[50px] pb-[100px] lg:flex-1">
+      <div className="flex flex-col gap-[50px] px-[20px] md:px-[80px] py-[100px] lg:flex-1">
         <div className="flex flex-col items-center gap-[10px]">
           <h1 className="font-display text-2xl font-medium text-center">Welcome Back</h1>
           <h2 className="font-sans text-base leading-tight text-center">
