@@ -1,3 +1,5 @@
+import z from "zod"
+
 export const registerForm = [
   {
     id: "full-name",
@@ -39,3 +41,29 @@ export const loginForm = [
     label: "Password",
   },
 ]
+
+export const registerSchema = z
+  .object({
+    "full-name": z.string().max(50, "Name too long"),
+    email: z.email().max(256, "Email too long"),
+    password: z.string().min(8, "Password too short").max(50, "Password too long"),
+    "confirm-password": z.string().min(8, "Confirm Password too short").max(50, "Confirm Password too long"),
+    "remember-me": z.enum(["on", "off"], "Invalid remember-me value"),
+  })
+  .refine(
+    (data) => data.password === data["confirm-password"],
+    {
+      message: "Passwords do not match",
+      path: ["confirm-password"]
+    }
+  )
+
+export const loginSchema = z
+  .object({
+    "username-email": z.union([
+      z.email().max(256, "Email too long"),
+      z.string().max(50, "Name too long"),
+    ]),
+    password: z.string().min(8, "Password too short").max(50, "Password too long"),
+    "remember-me": z.enum(["on", "off"], "Invalid remember-me value"),
+  })

@@ -5,14 +5,46 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { registerForm } from "@/constants/forms";
 import { RiEyeCloseLine, RiEyeLine } from "@remixicon/react";
-import { useState } from "react";
+import { SubmitEvent, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "@/components/ui/link";
+import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
+
+  const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget)
+    const data = {
+      "full-name": formData.get("full-name"),
+      email: formData.get("email"),
+      password: formData.get("password"),
+      "confirm-password": formData.get("confirm-password"),
+      "remember-me": formData.get("remember-me"),
+    }
+
+    const res = await fetch("/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+    const { message } = await res.json()
+
+    if (res.ok) {
+      toast.success(message, { position: "bottom-center" })
+      redirect('/dashboard')
+    } else {
+      toast.error(message, { position: "bottom-center" })
+    }
+  }
+
   return (
-    <form className="flex flex-col gap-[20px]">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-[20px]">
       {registerForm.map(field => (
         <Field
           key={field.id}

@@ -13,6 +13,7 @@ import { RiCloseLine, RiSearchLine } from "@remixicon/react";
 import { AnimatePresence, motion } from "motion/react";
 import NavbarCTAButtons from "./NavbarCTAButtons";
 import { cn } from "@/lib/utils";
+import Link from "../ui/link";
 
 export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -83,7 +84,9 @@ export default function Navbar() {
         scrolled && "bg-background/80 backdrop-blur-md"
       )}>
         <div className="flex flex-1 items-center gap-[8px]">
-          <VeluneLogo className="text-foreground w-[48px] h-[48px] shrink-0" />
+          <Link href="/">
+            <VeluneLogo className="text-foreground w-[48px] h-[48px] shrink-0" />
+          </Link>
           <AnimatePresence mode="wait" initial={false}>
             {searchOpen ? (
               <motion.form
