@@ -14,6 +14,8 @@ import { AnimatePresence, motion } from "motion/react";
 import NavbarCTAButtons from "./NavbarCTAButtons";
 import { cn } from "@/lib/utils";
 import Link from "../ui/link";
+import { createClient } from "@/lib/supabase/client";
+import { User } from "@supabase/supabase-js";
 
 export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -25,7 +27,22 @@ export default function Navbar() {
   const [stopped, setStopped] = useState(false)
   const [top, setTop] = useState(0)
 
+  const supabase = createClient()
+  const [user, setUser] = useState<User | null>(null);
+  const [authLoading, setAuthLoading] = useState(true);
 
+  useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      setUser(user);
+      setAuthLoading(false);
+    };
+
+    getUser();
+  }, [supabase]);
 
   const handleSearch = (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -149,9 +166,13 @@ export default function Navbar() {
               )
             })}
           </div>
-          <Divider width={2} />
-          <Sidebar />
-          <NavbarCTAButtons />
+          {!authLoading && !user && (
+            <>
+              <Divider width={2} />
+              <Sidebar />
+              <NavbarCTAButtons />
+            </>
+          )}
         </div>
       </nav>
     </header>

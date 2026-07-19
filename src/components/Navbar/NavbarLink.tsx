@@ -16,7 +16,7 @@ export default function NavbarLink({
   const isPath = pathname === href;
   return (
     <Link href={href} className={cn(`
-      ${isPath ?
+      ${(isPath || pathname === "/dashboard" && href === "/") ?
         "box-border border-b-2 border-accent md:border-none text-accent" :
         "text-foreground/50 transition-colors duration-200 hover:text-foreground/80 active:text-foreground/80"
       }

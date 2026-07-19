@@ -10,14 +10,21 @@ import { RiMenuLine } from "@remixicon/react"
 import { ctaNavigation } from "@/constants/navigation"
 import { Button } from "@/components/ui/button"
 import { motion } from "motion/react"
+import { StandardProps } from "@/types/helpers"
+import { cn } from "@/lib/utils"
 
-export default function Sidebar() {
+export default function Sidebar({
+  className
+}: StandardProps) {
   return (
     <Sheet>
       <SheetTrigger asChild>
         <Button
           variant="default"
-          className="flex items-center justify-center self-center cursor-pointer md:hidden"
+          className={cn(
+            `flex items-center justify-center self-center cursor-pointer md:hidden`,
+            className
+          )}
           size="icon-sm"
         >
           <RiMenuLine className="w-[32px] h-[32px] [&_svg]:size-8" />
