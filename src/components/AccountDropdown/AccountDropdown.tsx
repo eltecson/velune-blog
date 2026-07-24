@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { RiArrowDropDownFill } from "@remixicon/react"
+import { RiArrowDropDownFill, RiLogoutBoxRLine, RiPencilLine, RiSettings2Line, RiUserLine } from "@remixicon/react"
 import { AccountDropdownProps } from "@/types/components"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
@@ -96,15 +96,28 @@ export default function AccountDropdown({
 
         <DropdownMenuContent>
           <DropdownMenuGroup>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Write a new post</DropdownMenuItem>
+            <DropdownMenuLabel>
+              <p>My Account</p>
+            </DropdownMenuLabel>
+
+            <DropdownMenuItem>
+              <RiUserLine />
+              <p>Profile</p>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem>
+              <RiPencilLine />
+              <p>Write a new post</p>
+            </DropdownMenuItem>
           </DropdownMenuGroup>
 
           <DropdownMenuSeparator />
 
           <DropdownMenuGroup>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem>
+              <RiSettings2Line />
+              <p>Settings</p>
+            </DropdownMenuItem>
 
             <DropdownMenuItem
               onSelect={(e) => {
@@ -112,7 +125,8 @@ export default function AccountDropdown({
                 setLogoutDialogOpen(true)
               }}
             >
-              Log out
+              <RiLogoutBoxRLine />
+              <p>Log out</p>
             </DropdownMenuItem>
           </DropdownMenuGroup>
         </DropdownMenuContent>
