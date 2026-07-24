@@ -14,7 +14,7 @@ import { AccountDropdownProps } from "@/types/components"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
-import { MouseEvent, useState } from "react"
+import { MouseEvent, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import {
   Dialog,
@@ -33,9 +33,13 @@ export default function AccountDropdown({
 }: AccountDropdownProps) {
   const router = useRouter()
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
+  const logoutInProgress = useRef(false)
 
   const handleLogout = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
+
+    if (logoutInProgress.current) return
+    logoutInProgress.current = true
 
     try {
       const res = await fetch("/api/auth/logout", {
@@ -65,6 +69,8 @@ export default function AccountDropdown({
       toast.error("Failed to log out. Please try again.", {
         position: "bottom-center",
       })
+    } finally {
+      logoutInProgress.current = false
     }
   }
 

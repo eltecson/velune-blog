@@ -5,7 +5,7 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { loginForm } from "@/constants/forms";
 import { RiEyeCloseLine, RiEyeLine } from "@remixicon/react";
-import { useState, SubmitEvent } from "react";
+import { useState, SubmitEvent, useRef } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "@/components/ui/link";
 import { toast } from "sonner";
@@ -13,9 +13,13 @@ import { redirect } from "next/navigation";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const loginInProgress = useRef(false)
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (loginInProgress.current) return
+    loginInProgress.current = true
 
     const formData = new FormData(e.currentTarget)
     const data = {
@@ -39,6 +43,8 @@ export default function LoginForm() {
     } else {
       toast.error(message, { position: "bottom-center" })
     }
+
+    loginInProgress.current = false
   }
 
   return (

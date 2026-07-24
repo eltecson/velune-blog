@@ -5,7 +5,7 @@ import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { registerForm } from "@/constants/forms";
 import { RiEyeCloseLine, RiEyeLine } from "@remixicon/react";
-import { SubmitEvent, useState } from "react";
+import { SubmitEvent, useRef, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "@/components/ui/link";
 import { redirect } from "next/navigation";
@@ -13,9 +13,13 @@ import { toast } from "sonner";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const registerInProgress = useRef(false)
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (registerInProgress.current) return
+    registerInProgress.current = true
 
     const formData = new FormData(e.currentTarget)
     const data = {
@@ -41,6 +45,8 @@ export default function RegisterForm() {
     } else {
       toast.error(message, { position: "bottom-center" })
     }
+
+    registerInProgress.current = false
   }
 
   return (
