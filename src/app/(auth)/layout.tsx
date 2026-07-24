@@ -3,9 +3,6 @@ import { Google_Sans_Flex, Inter } from "next/font/google";
 import "@/app/globals.css";
 import Footer from "@/components/Footer";
 import { Toaster } from "sonner";
-import { createClient } from "@/lib/supabase/server";
-import pRetry from "p-retry";
-import { redirect } from "next/navigation";
 
 const googleSansFlex = Google_Sans_Flex({
   variable: "--font-google-sans-flex",
@@ -31,20 +28,6 @@ export default async function LandingLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const supabase = await createClient();
-
-  // If user is already authenticated, redirect to dashboard
-  const user = await pRetry(async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    return { user };
-  }, { retries: 2 })
-  if (user) {
-    redirect("/dashboard")
-  }
-
   return (
     <html
       lang="en"

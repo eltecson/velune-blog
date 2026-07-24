@@ -22,10 +22,17 @@ interface SidebarLinkProps extends LinkProps {
   title: string;
 }
 
+interface AccountDropdownProps extends StandardProps {
+  account: {
+    avatarSrc: string,
+  }
+}
+
 export type {
   IconProps,
   DividerProps,
   NavbarIconProps,
   LinkProps,
   SidebarLinkProps,
+  AccountDropdownProps,
 }

@@ -1,25 +1,9 @@
 import { Button } from "@/components/ui/button";
 import Link from "@/components/ui/link";
 import { landingImages, landingImgSize } from "@/constants/images";
-import { createClient } from "@/lib/supabase/server";
 import Image from "next/image";
-import { redirect } from "next/navigation";
-import pRetry from "p-retry";
 
 export default async function Landing() {
-  const supabase = await createClient();
-
-  // If user is already authenticated, redirect to dashboard
-  const user = await pRetry(async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
-    return { user };
-  }, { retries: 2 })
-  if (user) {
-    redirect("/dashboard")
-  }
 
   return (
     <main className="flex flex-col flex-1 items-center justify-center gap-[120px] font-display">
@@ -31,9 +15,9 @@ export default async function Landing() {
           Velune is a modern publishing platform for creators who want clean writing, thoughtful design, and a space that feels entirely their own.
         </h2>
       </div>
-      <Link href="/register">
+      <Link href="/register" className="z-2">
         <Button
-          className="px-[24px] md:px-[32px] py-[12px] md:py-[16px] bg-secondary rounded-full font-display text-base md:text-[20px] font-normal normal-case z-2 hover:-translate-y-1 hover:scale-110"
+          className="px-[24px] md:px-[32px] py-[12px] md:py-[16px] bg-secondary rounded-full font-display text-base md:text-[20px] font-normal normal-case hover:-translate-y-1 hover:scale-110"
         >
           Start Writing
         </Button>

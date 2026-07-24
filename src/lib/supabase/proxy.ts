@@ -1,3 +1,4 @@
+import { guestOnlyRoutes, protectedRoutes } from '@/constants/navigation'
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
@@ -38,15 +39,30 @@ export async function updateSession(request: NextRequest) {
   const { data } = await supabase.auth.getClaims()
   const user = data?.claims
 
-  if (
-    !user &&
-    !request.nextUrl.pathname.startsWith('/login') &&
-    !request.nextUrl.pathname.startsWith('/auth')
-  ) {
-    // no user, potentially respond by redirecting the user to the login page
-    const url = request.nextUrl.clone()
-    url.pathname = '/auth/login'
-    return NextResponse.redirect(url)
+  const pathname = request.nextUrl.pathname;
+
+  const isProtectedRoute = protectedRoutes.includes(pathname);
+
+  const isGuestOnlyRoute = guestOnlyRoutes.includes(pathname);
+
+  // Unauthenticated users cannot access protected routes.
+  if (!user && isProtectedRoute) {
+    const url = request.nextUrl.clone();
+
+    url.pathname = "/login";
+    url.searchParams.set("redirectTo", pathname);
+
+    return NextResponse.redirect(url);
+  }
+
+  // Authenticated users cannot access guest-only routes.
+  if (user && isGuestOnlyRoute) {
+    const url = request.nextUrl.clone();
+
+    url.pathname = "/dashboard";
+    url.search = "";
+
+    return NextResponse.redirect(url);
   }
 
   // IMPORTANT: You *must* return the supabaseResponse object as it is.

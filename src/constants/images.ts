@@ -24,3 +24,5 @@ export const landingImages = [
     alt: "",
   },
 ]
+
+export const defaultAvatarSrc = imageDir + "/default_avatar.png"

@@ -16,6 +16,8 @@ import { cn } from "@/lib/utils";
 import Link from "../ui/link";
 import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
+import AccountDropdown from "@/components/AccountDropdown";
+import { defaultAvatarSrc } from "@/constants/images"
 
 export default function Navbar() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -30,12 +32,25 @@ export default function Navbar() {
   const supabase = createClient()
   const [user, setUser] = useState<User | null>(null);
   const [authLoading, setAuthLoading] = useState(true);
+  const [avatarSrc, setAvatarSrc] = useState<string>(defaultAvatarSrc);
 
   useEffect(() => {
     const getUser = async () => {
       const {
         data: { user },
       } = await supabase.auth.getUser();
+
+      if (user) {
+        const { data, error } = await supabase
+          .from("images")
+          .select()
+          .eq("id", user.id)
+          .maybeSingle();
+
+        if (data !== null) {
+          setAvatarSrc(data.small_path)
+        }
+      }
 
       setUser(user);
       setAuthLoading(false);
@@ -165,6 +180,9 @@ export default function Navbar() {
                 </NavbarLink>
               )
             })}
+            {!authLoading && user && (
+              <AccountDropdown account={{ avatarSrc: defaultAvatarSrc }} />
+            )}
           </div>
           {!authLoading && !user && (
             <>

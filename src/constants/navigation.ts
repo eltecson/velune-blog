@@ -107,3 +107,7 @@ export const footerNavigation = [
     ]
   },
 ]
+
+export const protectedRoutes = ["/dashboard"];
+
+export const guestOnlyRoutes = ["/", "/login", "/register"];
