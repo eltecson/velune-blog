@@ -8,12 +8,13 @@ import { RiEyeCloseLine, RiEyeLine } from "@remixicon/react";
 import { SubmitEvent, useRef, useState } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "@/components/ui/link";
-import { redirect } from "next/navigation";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const registerInProgress = useRef(false)
+  const router = useRouter()
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,7 +42,7 @@ export default function RegisterForm() {
 
     if (res.ok) {
       toast.success(message, { position: "bottom-center" })
-      redirect('/dashboard')
+      router.refresh()
     } else {
       toast.error(message, { position: "bottom-center" })
     }

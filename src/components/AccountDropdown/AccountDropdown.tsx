@@ -111,7 +111,10 @@ export default function AccountDropdown({
               <p>Profile</p>
             </DropdownMenuItem>
 
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => {
+              router.push("/new")
+              router.refresh()
+            }}>
               <RiPencilLine />
               <p>Write a new post</p>
             </DropdownMenuItem>
@@ -154,7 +157,7 @@ export default function AccountDropdown({
             </DialogDescription>
           </DialogHeader>
 
-          <DialogFooter>
+          <DialogFooter className="flex flex-col sm:flex-row justify-end">
             <Button onClick={handleLogout} className="bg-good text-complementary">
               Yes
             </Button>

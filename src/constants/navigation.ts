@@ -108,6 +108,6 @@ export const footerNavigation = [
   },
 ]
 
-export const protectedRoutes = ["/dashboard"];
+export const protectedRoutes = ["/dashboard", "/new"];
 
 export const guestOnlyRoutes = ["/", "/login", "/register"];

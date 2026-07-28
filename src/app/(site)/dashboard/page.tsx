@@ -6,8 +6,8 @@ export const metadata: Metadata = {
 
 export default async function Dashboard() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center font-sans min-h-screen bg-background">
+    <main className="flex flex-col flex-1 items-center justify-center font-sans min-h-screen bg-background">
 
-    </div>
+    </main>
   );
 }

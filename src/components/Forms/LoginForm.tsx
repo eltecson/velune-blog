@@ -9,11 +9,12 @@ import { useState, SubmitEvent, useRef } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "@/components/ui/link";
 import { toast } from "sonner";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const loginInProgress = useRef(false)
+  const router = useRouter()
 
   const handleSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,7 +40,7 @@ export default function LoginForm() {
 
     if (res.ok) {
       toast.success(message, { position: "bottom-center" })
-      redirect('/dashboard')
+      router.refresh()
     } else {
       toast.error(message, { position: "bottom-center" })
     }
