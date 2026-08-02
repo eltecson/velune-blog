@@ -33,6 +33,7 @@ export default function AccountDropdown({
 }: AccountDropdownProps) {
   const router = useRouter()
   const [logoutDialogOpen, setLogoutDialogOpen] = useState(false)
+  const [writeDialogOpen, setWriteDialogOpen] = useState(false)
   const logoutInProgress = useRef(false)
 
   const handleLogout = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -111,10 +112,7 @@ export default function AccountDropdown({
               <p>Profile</p>
             </DropdownMenuItem>
 
-            <DropdownMenuItem onClick={() => {
-              router.push("/new")
-              router.refresh()
-            }}>
+            <DropdownMenuItem onClick={() => setWriteDialogOpen(true)}>
               <RiPencilLine />
               <p>Write a new post</p>
             </DropdownMenuItem>
@@ -148,17 +146,49 @@ export default function AccountDropdown({
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
-              Confirm logout
+              Are you sure you want to log out?
             </DialogTitle>
 
             <DialogDescription>
-              Are you sure you want to log out?
               You’ll need to sign in again to access your account.
             </DialogDescription>
           </DialogHeader>
 
           <DialogFooter className="flex flex-col sm:flex-row justify-end">
             <Button onClick={handleLogout} className="bg-good text-complementary">
+              Yes
+            </Button>
+
+            <DialogClose asChild>
+              <Button className="bg-bad text-complementary">
+                No
+              </Button>
+            </DialogClose>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog
+        open={writeDialogOpen}
+        onOpenChange={setWriteDialogOpen}
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              Write a new post?
+            </DialogTitle>
+
+            <DialogDescription>
+              This will automatically create a new draft.
+            </DialogDescription>
+          </DialogHeader>
+
+          <DialogFooter className="flex flex-col sm:flex-row justify-end">
+            <Button onClick={() => {
+              setWriteDialogOpen(false)
+              router.push("/new")
+              router.refresh()
+            }} className="bg-good text-complementary">
               Yes
             </Button>
 

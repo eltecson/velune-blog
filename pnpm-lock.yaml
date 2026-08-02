@@ -35,6 +35,9 @@ importers:
       motion:
         specifier: ^12.42.2
         version: 12.42.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      nanoid:
+        specifier: ^6.0.0
+        version: 6.0.0
       next:
         specifier: 16.2.4
         version: 16.2.4(@babel/core@7.29.7(supports-color@7.2.0))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -71,6 +74,9 @@ importers:
       tw-animate-css:
         specifier: ^1.4.0
         version: 1.4.0
+      use-debounce:
+        specifier: ^10.1.1
+        version: 10.1.1(react@19.2.4)
       zod:
         specifier: ^4.4.3
         version: 4.4.3
@@ -3769,6 +3775,11 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  nanoid@6.0.0:
+    resolution: {integrity: sha512-mkUH+rPkwU2qPadJ0oJZOjeZ5Mxn8Q1UhevwkTRWNuUZzyia3h4rhzK39hxaHTk0o2OxB8W2SQ6A8k23ZDi1pQ==}
+    engines: {node: ^22 || ^24 || >=26}
+    hasBin: true
+
   napi-postinstall@0.3.4:
     resolution: {integrity: sha512-PHI5f1O0EP5xJ9gQmFGMS6IZcrVvTjpXjz7Na41gTE7eE2hK11lg04CECCYEEjdc17EV4DO+fkGEtt7TpTaTiQ==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
@@ -4662,6 +4673,12 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  use-debounce@10.1.1:
+    resolution: {integrity: sha512-kvds8BHR2k28cFsxW8k3nc/tRga2rs1RHYCqmmGqb90MEeE++oALwzh2COiuBLO1/QXiOuShXoSN2ZpWnMmvuQ==}
+    engines: {node: '>= 16.0.0'}
+    peerDependencies:
+      react: '*'
 
   use-isomorphic-layout-effect@1.2.1:
     resolution: {integrity: sha512-tpZZ+EX0gaghDAiFR37hj5MgY6ZN55kLiPkJsKxBMZ6GZdOSPJXiOzPM984oPYZ5AnehYx5WQp1+ME8I/P/pRA==}
@@ -8770,6 +8787,8 @@ snapshots:
 
   nanoid@3.3.12: {}
 
+  nanoid@6.0.0: {}
+
   napi-postinstall@0.3.4: {}
 
   natural-compare@1.4.0: {}
@@ -9874,6 +9893,10 @@ snapshots:
       react: 19.2.4
     optionalDependencies:
       '@types/react': 19.2.17
+
+  use-debounce@10.1.1(react@19.2.4):
+    dependencies:
+      react: 19.2.4
 
   use-isomorphic-layout-effect@1.2.1(@types/react@19.2.17)(react@19.2.4):
     dependencies:

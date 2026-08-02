@@ -12,7 +12,7 @@ export default function NewPostPage() {
         <h1 className="text-[20px] font-medium font-display">
           New Post
         </h1>
-        <NewPostEditor className="pb-25" />
+        <NewPostEditor />
       </div>
 
     </main>

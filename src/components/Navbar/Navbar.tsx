@@ -181,7 +181,7 @@ export default function Navbar() {
               )
             })}
             {!authLoading && user && (
-              <AccountDropdown account={{ avatarSrc: defaultAvatarSrc }} />
+              <AccountDropdown account={{ avatarSrc: avatarSrc ?? defaultAvatarSrc }} />
             )}
           </div>
           {!authLoading && !user && (

@@ -22,9 +22,9 @@ export default function BlockNoteEditorSkeleton({
       {/* Editor */}
       <div className="-translate-x-10 flex flex-col gap-4">
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="flex items-start gap-3">
+          <div key={i} className="flex items-center gap-1">
             {/* Side menu buttons */}
-            <div className="flex gap-1 pt-1">
+            <div className="flex gap-[1px] pt-1">
               <Skeleton className="size-7 rounded-md" />
               <Skeleton className="size-7 rounded-md" />
             </div>

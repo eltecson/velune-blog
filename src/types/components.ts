@@ -28,6 +28,27 @@ interface AccountDropdownProps extends StandardProps {
   }
 }
 
+type SaveStatus =
+  | "Unsaved"
+  | "Autosaving"
+  | "Autosaved"
+  | "Saving"
+  | "Saved"
+  | "Error";
+
+type PostStatus =
+  | "draft"
+  | "published"
+  | "scheduled"
+
+interface PostProps {
+  title: string;
+  content: Record<string, any>;
+  excerpt: string;
+  cover_image: string;
+  status: PostStatus;
+}
+
 export type {
   IconProps,
   DividerProps,
@@ -35,4 +56,6 @@ export type {
   LinkProps,
   SidebarLinkProps,
   AccountDropdownProps,
+  SaveStatus,
+  PostProps,
 }
