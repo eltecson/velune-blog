@@ -36,6 +36,7 @@ import { useDebouncedCallback } from "use-debounce"
 import { AuthUser } from "@supabase/supabase-js";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { PostSchema } from "@/constants/editor";
 
 export default function BlockNoteEditor({
   className
@@ -86,6 +87,21 @@ export default function BlockNoteEditor({
     });
   }, [editor]);
 
+  function isSafeData() {
+    const parsed = PostSchema.safeParse(post)
+
+    const parsedPost = parsed
+    if (!parsedPost.success) {
+      toast.error(
+        "Publishing failed: " +
+        parsedPost.error.issues[0].message,
+        { position: "bottom-center" }
+      )
+      return false
+    }
+    return true
+  }
+
   async function save(mode: "auto" | "manual") {
     setStatus(mode === "auto" ? "Autosaving" : "Saving");
 
@@ -116,6 +132,7 @@ export default function BlockNoteEditor({
   }
 
   async function publish() {
+    if (!isSafeData()) return
     try {
       const currentUser = user ?? await getUser();
 
