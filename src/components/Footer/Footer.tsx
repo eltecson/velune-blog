@@ -27,7 +27,10 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <p className="text-base md:text-lg tracking-wider self-center">© Velune 2026</p>
+        <div className="self-end flex flex-col gap-[8px] items-end">
+          <Link href="https://storyset.com/web" target="_blank" className="text-base md:text-lg tracking-wider active:underline hover:underline underline-offset-2">Web illustrations by Storyset</Link>
+          <p className="text-base md:text-lg tracking-wider">© Velune 2026</p>
+        </div>
       </div>
     </footer>
   )

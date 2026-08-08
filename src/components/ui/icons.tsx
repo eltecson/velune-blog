@@ -4,6 +4,7 @@ import RawVeluneLogo from "@/assets/logo.svg"
 import RawWideLogo from "@/assets/wide-logo.svg"
 import RawRegisterIllustration from "@/assets/register.svg"
 import RawLoginIllustration from "@/assets/login.svg"
+import RawNotFoundIllustration from "@/assets/not-found.svg"
 import { IconProps } from "@/types/components"
 
 export function VeluneLogo({
@@ -39,5 +40,14 @@ export function LoginIllustration({
 }: IconProps) {
   return (
     <RawLoginIllustration className={className} {...props}/>
+  )
+}
+
+export function NotFoundIllustration({
+  className,
+  ...props
+}: IconProps) {
+  return (
+    <RawNotFoundIllustration className={className} {...props}/>
   )
 }

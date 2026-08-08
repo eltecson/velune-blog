@@ -118,7 +118,7 @@ export default function Navbar({
     >
       <nav className={cn(
         "px-[20px] lg:pl-[56px] lg:pr-[80px] py-[8px] border-b border-solid border-foreground/50 flex justify-between items-stretch md:gap-[10px] lg:gap-[20px]",
-        "bg-background/80 backdrop-blur-md relative"
+        "bg-background/90 backdrop-blur-md relative"
       )}>
         {verticalLine && <VerticalLine />}
         <div className="relative z-20 flex flex-1 items-center gap-[8px]">
