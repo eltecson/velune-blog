@@ -14,7 +14,7 @@ export default function SidebarLink({
       <motion.li
         variants={item}
         className={cn(
-          "py-5 transition-colors duration-200 border-b border-foreground/50 text-base font-display text-center",
+          "py-5 transition-colors duration-200 border-b border-foreground/50 text-base font-display text-center font-medium",
           className
         )}
       >

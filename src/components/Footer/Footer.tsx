@@ -4,7 +4,7 @@ import Link from "@/components/ui/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-dark">
+    <footer className="bg-dark z-50">
       <div className="py-[64px] md:py-[96px] flex justify-center items-center">
         <Link href="/">
           <WideLogo className="w-auto h-[72px] md:h-[108px] text-complementary" />

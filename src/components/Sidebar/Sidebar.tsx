@@ -55,7 +55,7 @@ export default function Sidebar({
             className="flex flex-col justify-center min-h-full px-[20px]"
           >
             {ctaNavigation.map((link) => (
-              <SidebarLink key={link.href} href={link.href} className={link.href === "/register" ? "border-1 border-foreground active:border-accent active:bg-accent active:text-background" : "active:text-foreground/50"}>
+              <SidebarLink key={link.href} href={link.href} className={link.href === "/register" ? "border-2 border-foreground active:border-accent active:bg-accent active:text-background" : "active:text-foreground/50"}>
                 {link.title}
               </SidebarLink>
             ))}

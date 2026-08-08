@@ -148,12 +148,12 @@ export default function BlockNoteEditor({
 
       if (error) throw error
 
-      toast.success("Post successfully published!")
+      toast.success("Post successfully published!", { position: "bottom-center" })
       router.push("/dashboard")
       router.refresh()
     } catch (error) {
       console.error("Publishing failed: " + error)
-      toast.error("Publishing failed: " + error)
+      toast.error("Publishing failed: " + error, { position: "bottom-center" })
     } finally {
       setPublishDialogOpen(false)
     }

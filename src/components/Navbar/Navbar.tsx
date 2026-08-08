@@ -18,11 +18,16 @@ import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
 import AccountDropdown from "@/components/AccountDropdown";
 import { defaultAvatarSrc } from "@/constants/images"
+import { toast } from "sonner";
+import VerticalLine from "./VerticalLine";
 
-export default function Navbar() {
+export default function Navbar({
+  verticalLine
+}: {
+  verticalLine?: boolean;
+}) {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [scrolled, setScrolled] = useState(false)
   const headerRef = useRef<HTMLElement>(null)
   const footerRef = useRef<HTMLElement | null>(null)
 
@@ -47,6 +52,12 @@ export default function Navbar() {
           .eq("id", user.id)
           .maybeSingle();
 
+        if (error) {
+          console.error(error)
+          toast.error("Fetching failed: " + error.message)
+          throw error
+        }
+
         if (data !== null) {
           setAvatarSrc(data.small_path)
         }
@@ -63,12 +74,6 @@ export default function Navbar() {
     e.preventDefault()
     console.log(query)
   }
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   useEffect(() => {
     footerRef.current = document.querySelector("footer")
@@ -102,8 +107,8 @@ export default function Navbar() {
     <header
       ref={headerRef}
       className={cn(
-        "left-0 w-full z-50",
-        stopped ? "absolute" : "fixed"
+        "left-0 w-full z-40",
+        stopped ? "absolute" : "sticky"
       )}
       style={
         stopped
@@ -113,9 +118,10 @@ export default function Navbar() {
     >
       <nav className={cn(
         "px-[20px] lg:pl-[56px] lg:pr-[80px] py-[8px] border-b border-solid border-foreground/50 flex justify-between items-stretch md:gap-[10px] lg:gap-[20px]",
-        scrolled && "bg-background/80 backdrop-blur-md"
+        "bg-background/80 backdrop-blur-md relative"
       )}>
-        <div className="flex flex-1 items-center gap-[8px]">
+        {verticalLine && <VerticalLine />}
+        <div className="relative z-20 flex flex-1 items-center gap-[8px]">
           <Link href="/">
             <VeluneLogo className="text-foreground w-[48px] h-[48px] shrink-0" />
           </Link>

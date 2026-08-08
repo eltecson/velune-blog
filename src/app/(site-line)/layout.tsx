@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   description: "A full-stack blog application featuring post creation, editing, deletion, and dynamic rendering — built as a demo project to explore modern web development workflows.",
 };
 
-export default function SiteLayout({
+export default function SiteLineLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -35,7 +35,7 @@ export default function SiteLayout({
       className={`${googleSansFlex.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <Navbar />
+        <Navbar verticalLine />
         {children}
         <Footer />
         <Toaster />
