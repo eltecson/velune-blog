@@ -117,7 +117,7 @@ export default function Navbar({
       }
     >
       <nav className={cn(
-        "px-[20px] lg:pl-[56px] lg:pr-[80px] py-[8px] border-b border-solid border-foreground/50 flex justify-between items-stretch md:gap-[10px] lg:gap-[20px]",
+        "px-[20px] lg:pl-[56px] lg:pr-[80px] py-[8px] border-b-1 border-muted-foreground flex justify-between items-stretch md:gap-[10px] lg:gap-[20px]",
         "bg-background/90 backdrop-blur-md relative"
       )}>
         {verticalLine && <VerticalLine />}

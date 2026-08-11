@@ -3,11 +3,10 @@ import { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Toaster } from "@/components/ui/sonner";
-import Link from "@/components/ui/link";
 import RedirectButtons from "@/components/ui/redirect-buttons";
 
 export const metadata: Metadata = {
-  title: "404 Error"
+  title: "Page not found"
 };
 
 export default function NotFound() {
